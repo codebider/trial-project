@@ -8,6 +8,12 @@ export interface UserType {
     password: string;
 }
 
+export interface UserData {
+    id: number;
+    username: string;
+    password: string;
+}
+
 export interface FindOne {
     username: string;
 }

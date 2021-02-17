@@ -12,11 +12,12 @@ const loginHandler: Handler<LoginResponse> = async (req) => {
     const { username, password } = req.body as LoginRequest;
 
     const result = await userService.login(username, password);
-    console.log(result);
+
     return {
         statusCode: HttpStatusCode.CREATED,
         body: {
-            token: 'token'
+            token: result.token,
+            username: result.username
         }
     };
 };

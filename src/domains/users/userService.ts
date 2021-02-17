@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-
 import { inject, injectable } from 'inversify';
 
 import { UserType } from '@server/domains/users/entity/user.types';
@@ -8,6 +7,8 @@ import { UserManager } from '@server/domains/users/userManager';
 import { checkHashPassword, generateHashPassword } from '@server/commons/utils/hashPassword';
 import logger from '@server/commons/logger';
 import errorCode from '@server/commons/errors/errorCode';
+import { generateAuthToken } from '@server/commons/utils/jwt';
+import { LoginResponse } from '@server/domains/users/type';
 
 @injectable()
 export class UserService {
@@ -24,7 +25,7 @@ export class UserService {
         return newUser;
     }
 
-    async login(username: string, password: string): Promise<UserType> {
+    async login(username: string, password: string): Promise<LoginResponse> {
         // check exist user
         const user = await this.userManager.findOne({ username });
         logger.debug(' Find user ', user);
@@ -39,6 +40,11 @@ export class UserService {
             throw errorCode.WRONG_PASSWORD;
         }
 
-        return user;
+        const token = generateAuthToken({ id: user.id });
+
+        return {
+            token,
+            username: user.username
+        };
     }
 }
