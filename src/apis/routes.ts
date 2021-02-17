@@ -1,10 +1,13 @@
 import express from 'express';
 
 import routeLogin from './auth/login/route';
+import routeRegister from './auth/register/route';
 
 const routes = express.Router();
 
-[routeLogin].forEach((item) => {
+const list = [routeLogin, routeRegister];
+
+list.forEach((item) => {
     routes.use(item);
 });
 
