@@ -28,7 +28,7 @@ const buildOverride = (envVar, base = {}): object => {
     );
 };
 
-interface Configuration {
+export interface Configuration {
     get: Function;
 }
 

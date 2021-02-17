@@ -4,7 +4,7 @@ import development from './development.json';
 import production from './production.json';
 import test from './test.json';
 
-import createConfiguration from '../utils/createConfiguration';
+import createConfiguration, { Configuration } from '../utils/createConfiguration';
 
 const env = (process.env.NODE_ENV || 'development').toLowerCase();
 
@@ -19,7 +19,7 @@ const Envs = {
 };
 
 const envConfig = Envs[env];
-const config = createConfiguration({
+const config: Configuration = createConfiguration({
     envvar: { ...envvar, env },
     envConfig,
     common: composeCommon
