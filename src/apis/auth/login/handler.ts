@@ -14,7 +14,7 @@ const loginHandler: Handler<LoginResponse> = async (req) => {
     const result = await userService.login(username, password);
 
     return {
-        statusCode: HttpStatusCode.CREATED,
+        statusCode: HttpStatusCode.OK,
         body: {
             token: result.token,
             username: result.username
