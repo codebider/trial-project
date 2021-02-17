@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "declarationMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@server/*": ["src/*"],
+      "@tests/*": ["__tests__/*"]
+    }
+  },
+  "exclude": [],
+  "include": ["src", "__tests__"]
+}

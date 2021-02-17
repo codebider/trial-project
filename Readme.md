@@ -19,3 +19,8 @@ Your customers want to manage their document/data
 - Other suggested features
 - Cool features you think the app should have
 - Tech improvement you could think of
+
+
+# Development
+- Install dependencies `npm install`
+- Start server `npm start`
