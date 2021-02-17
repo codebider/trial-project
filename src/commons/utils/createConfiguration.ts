@@ -1,11 +1,12 @@
 import isNil from 'lodash/isNil';
-import * as nconf from 'nconf';
+// eslint-disable-next-line import/default
+import nconf from 'nconf';
 
 const noRecursion = (env): boolean => {
     return env.env || typeof env === 'string';
 };
 
-const getEnvValue = (env): string => {
+const getEnvValue = (env): string | undefined => {
     if (typeof env === 'object') {
         return process.env[env.env] || env.default;
     }
@@ -27,7 +28,11 @@ const buildOverride = (envVar, base = {}): object => {
     );
 };
 
-const createConfiguration = ({ envvar = {}, envConfig = {}, common = {} }): unknown => {
+interface Configuration {
+    get: Function;
+}
+
+const createConfiguration = ({ envvar = {}, envConfig = {}, common = {} }): Configuration => {
     const env = buildOverride(envvar);
     const nc = nconf
         .overrides(env)
