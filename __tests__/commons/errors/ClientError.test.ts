@@ -1,6 +1,6 @@
 import { ClientError, newClientError } from '@server/commons/errors/ClientError';
 
-describe('AppError', () => {
+describe('ClientError', () => {
     it('should return error data', () => {
         const appError = new ClientError({
             statusCode: 400,
