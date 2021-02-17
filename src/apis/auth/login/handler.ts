@@ -17,7 +17,7 @@ const loginHandler: Handler<LoginResponse> = async (req) => {
         statusCode: HttpStatusCode.OK,
         body: {
             token: result.token,
-            username: result.username
+            fullName: result.fullName
         }
     };
 };

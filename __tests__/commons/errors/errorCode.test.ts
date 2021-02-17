@@ -12,4 +12,8 @@ describe('errorCode', () => {
     it('should throw correct message for WRONG_PASSWORD', () => {
         expect(errorCode.VALIDATOR_ERROR('something wrong')).toEqual(new Error('something wrong'));
     });
+
+    it('should throw correct message for USER_EXISTED', () => {
+        expect(errorCode.USER_EXISTED).toEqual(new Error('User existed'));
+    });
 });

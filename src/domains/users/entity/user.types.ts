@@ -4,6 +4,7 @@ export interface UserAttributes extends UserType {
 }
 
 export interface UserType {
+    fullName: string;
     username: string;
     password: string;
 }
@@ -11,6 +12,7 @@ export interface UserType {
 export interface UserData {
     id: number;
     username: string;
+    fullName: string;
     password: string;
 }
 

@@ -17,10 +17,16 @@ export const User = (sequelize: Sequelize): UserStatic => {
             type: DataTypes.INTEGER
         },
         username: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            unique: true
+        },
+        fullName: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         password: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         createdAt: {
             allowNull: false,

@@ -25,7 +25,15 @@ const errorCode = {
             userMessage: message,
             internalMessage: message
         });
-    }
+    },
+    get USER_EXISTED(): ClientError {
+        return newClientError({
+            statusCode: HttpStatusCode.Conflict,
+            errorId: 'D004',
+            userMessage: 'User existed',
+            internalMessage: 'User existed'
+        });
+    },
 };
 
 export default errorCode;
