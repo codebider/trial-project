@@ -3,7 +3,7 @@ import express from 'express';
 import { Handler, Route, Validator } from '@server/apis/type';
 import errorCode from '@server/commons/errors/errorCode';
 
-const validateRequest = (validate?: Validator): express.RequestHandler => {
+export const validateRequest = (validate?: Validator): express.RequestHandler => {
     return async (req, _res, next) => {
         if (!validate) {
             return next();
@@ -20,7 +20,7 @@ const validateRequest = (validate?: Validator): express.RequestHandler => {
     };
 };
 
-const asyncHandler = <ResponseBody>(handler: Handler<ResponseBody>): express.RequestHandler => {
+export const asyncHandler = <ResponseBody>(handler: Handler<ResponseBody>): express.RequestHandler => {
     return async (req, res, next): Promise<void> => {
         try {
             const response = await handler(req, res, next);
