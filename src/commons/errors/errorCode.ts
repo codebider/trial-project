@@ -34,6 +34,14 @@ const errorCode = {
             internalMessage: 'User existed'
         });
     },
+    get UN_AUTHORIZED(): ClientError {
+        return newClientError({
+            statusCode: HttpStatusCode.Unauthorized,
+            errorId: 'D005',
+            userMessage: 'unauthorized',
+            internalMessage: 'UN_AUTHORIZED'
+        });
+    },
 };
 
 export default errorCode;

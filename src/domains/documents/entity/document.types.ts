@@ -14,9 +14,6 @@ export interface DocumentType {
     passportNumber?: string;
 }
 
-export interface DocumentData {
+export interface DocumentData extends DocumentType {
     id: number;
-    username: string;
-    fullName: string;
-    password: string;
 }

@@ -14,7 +14,7 @@ export class DocumentManager {
         this.documentInstance = Document(connector);
     }
 
-    async create(user: DocumentType): Promise<DocumentType> {
+    async create(user: DocumentType): Promise<DocumentData> {
         const documentData: DocumentModel = this.documentInstance.build(user);
 
         const result = await documentData.save();
@@ -23,9 +23,7 @@ export class DocumentManager {
 
     async findOne(filter: FindOne): Promise<DocumentData> {
         const documentData: DocumentData = await this.documentInstance.findOne({
-            where: {
-                username: filter.username
-            },
+            where: filter as any,
             raw: true
         });
 

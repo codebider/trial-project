@@ -15,6 +15,7 @@ export enum HttpStatusCode {
     BAD_REQUEST = 400,
     NOT_FOUND = 404,
     Conflict = 409,
+    Unauthorized = 401,
     INTERNAL_SERVER_ERROR = 500
 }
 
@@ -47,6 +48,7 @@ export type Handler<ResponseBody> = (
 
 export interface Route {
     path: string;
+    isAuth?: boolean;
     method: HttpMethod;
     validator?: Validator;
     handler: Handler<unknown>;
