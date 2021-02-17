@@ -1,0 +1,19 @@
+export interface UserAttributes extends UserType {
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface UserType {
+    username: string;
+    password: string;
+}
+
+export interface UserData {
+    id: number;
+    username: string;
+    password: string;
+}
+
+export interface FindOne {
+    username: string;
+}

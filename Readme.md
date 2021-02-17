@@ -47,3 +47,6 @@ Your customers want to manage their document/data
 - Undo migrate:
 
 `npm run sequelize-cli db:migrate:undo`
+
+### Kill port
+sudo kill -9 `sudo lsof -t -i:5000`
