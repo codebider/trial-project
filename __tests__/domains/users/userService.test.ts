@@ -1,5 +1,5 @@
 import { UserService } from '@server/domains/users/userService';
-import { userSample } from '@tests/fixtures/user.fixture';
+import { userLogin, userSample } from '@tests/fixtures/user.fixture';
 
 describe('UserManager', () => {
     let userService: UserService;
@@ -36,6 +36,32 @@ describe('UserManager', () => {
                     password: 'p@ssword'
                 })
             ).rejects.toThrowError('User existed');
+        });
+    });
+
+    describe('login', () => {
+        it('should call with correct params', async () => {
+            connectorMock.findOne.mockResolvedValue(userLogin);
+
+            const result = await userService.login(userLogin.username, userLogin.plainPassword);
+            expect(result.fullName).toEqual(userLogin.fullName);
+            expect(result.token).toBeDefined();
+        });
+
+        it('throw error if not existed', async () => {
+            connectorMock.findOne.mockResolvedValue(null);
+
+            await expect(userService.login(userLogin.username, userLogin.plainPassword)).rejects.toThrowError(
+                'NOT_FOUND'
+            );
+        });
+
+        it('throw error if wrong password', async () => {
+            connectorMock.findOne.mockResolvedValue(userLogin);
+
+            await expect(userService.login(userLogin.username, userLogin.wrongPassword)).rejects.toThrowError(
+                'WRONG_PASSWORD'
+            );
         });
     });
 });
