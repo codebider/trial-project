@@ -24,3 +24,12 @@ Your customers want to manage their document/data
 # Development
 - Install dependencies `npm install`
 - Start server `npm start`
+
+# Endpoint
+- POST /v1/login
+- POST /v1/register
+- GET /v1/documents - list documents
+- GET /v1/documents/{id}
+- DELETE /v1/documents/{id}
+- PUT /v1/documents/{id}
+- GET /v1/documents/one?name=&email=

@@ -12,4 +12,3 @@ function startServer(): void {
 }
 
 startServer();
-
