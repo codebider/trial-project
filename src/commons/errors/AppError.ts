@@ -1,3 +1,5 @@
+import { HttpStatusCode } from '@server/apis/type';
+
 interface AppErrorResponse {
     errorId: string;
     message: string;
@@ -23,19 +25,19 @@ export class AppError extends Error {
         super(internalMessage);
 
         this.errorId = errorId;
-        this.statusCode = statusCode || 500;
+        this.statusCode = statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR;
         this.userMessage = userMessage;
         this.internalMessage = internalMessage;
     }
 
     public getStatusCode(): number {
-        return this.statusCode || 500;
+        return this.statusCode as number;
     }
 
     public toResponse(): AppErrorResponse {
         return {
             errorId: this.errorId,
-            message: this.userMessage as string
+            message: this.userMessage || this.internalMessage
         };
     }
 }
