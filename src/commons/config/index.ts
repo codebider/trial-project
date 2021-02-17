@@ -3,15 +3,23 @@ import createConfiguration from '../utils/config/createConfiguration';
 import commons from './commons';
 
 import envvar from './envvar.json';
+import development from './development.json';
+import production from './production.json';
+import test from './test.json';
 
-const env = (process.env.NODE_ENV || 'local').toLowerCase();
+const env = (process.env.NODE_ENV || 'development').toLowerCase();
 
 const composeCommon = {
   ...commons,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const envConfig = require(`./${env}.json`);
+const Envs = {
+  development,
+  production,
+  test,
+};
+
+const envConfig = Envs[env];
 const config = createConfiguration({
   envvar: { ...envvar, env },
   envConfig,
