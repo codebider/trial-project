@@ -9,7 +9,8 @@ export interface UpdateBy {
 }
 
 export interface FindOne {
-    userId: string;
+    id?: number;
+    userId?: string;
     ktpNumber?: string;
     npwpNumber?: string;
 }

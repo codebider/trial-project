@@ -3,10 +3,11 @@ import express from 'express';
 import routeLogin from './auth/login/route';
 import routeRegister from './auth/register/route';
 import routeDocumentCreate from './documents/create/route';
+import routeDocumentUpdate from './documents/update/route';
 
 const routes = express.Router();
 
-const list = [routeLogin, routeRegister, routeDocumentCreate];
+const list = [routeLogin, routeRegister, routeDocumentCreate, routeDocumentUpdate];
 
 list.forEach((item) => {
     routes.use(item);

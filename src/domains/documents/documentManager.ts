@@ -38,10 +38,11 @@ export class DocumentManager {
         });
     }
 
-    async updateById(id: number, update: UpdateBy): Promise<void> {
+    async updateById(userId: number, documentId: number, update: UpdateBy): Promise<void> {
         await this.documentInstance.update(update, {
             where: {
-                id
+                id: documentId,
+                userId
             }
         });
     }
