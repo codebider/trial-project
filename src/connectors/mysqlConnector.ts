@@ -1,13 +1,14 @@
-import {Options, Sequelize} from 'sequelize';
+import { Options, Sequelize } from 'sequelize';
+
 import config from '@server/commons/config';
 import logger from '@server/commons/logger';
 
-export const getDbConnection = () => {
-  const dbConfigs: Options = config.get('db');
+export const getDbConnection = (): Sequelize => {
+    const dbConfigs: Options = config.get('db');
 
-  logger.debug('Connect to ', dbConfigs.database);
+    logger.debug('Connect to ', dbConfigs.database);
 
-  const db = new Sequelize(dbConfigs.database as string, dbConfigs.username as string, dbConfigs.password, dbConfigs);
+    const db = new Sequelize(dbConfigs.database as string, dbConfigs.username as string, dbConfigs.password, dbConfigs);
 
-  return db;
+    return db;
 };

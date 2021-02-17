@@ -1,7 +1,9 @@
-import * as http from 'http';
 import logger from '@server/commons/logger';
-import newServer from './server';
 import config from '@server/commons/config';
+
+import * as http from 'http';
+
+import newServer from './server';
 
 function startServer(): void {
     const app = newServer();

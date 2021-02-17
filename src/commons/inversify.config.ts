@@ -1,9 +1,11 @@
 import { Container } from 'inversify';
-import { TYPES } from './types';
 import { Sequelize } from 'sequelize';
-import {getDbConnection} from '@server/connectors/mysqlConnector';
-import {UserManager} from '@server/domains/users/userManager';
-import {UserService} from '@server/domains/users/userService';
+
+import { getDbConnection } from '@server/connectors/mysqlConnector';
+import { UserManager } from '@server/domains/users/userManager';
+import { UserService } from '@server/domains/users/userService';
+
+import { TYPES } from './types';
 
 const db = getDbConnection();
 const myContainer = new Container();

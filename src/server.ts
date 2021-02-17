@@ -1,4 +1,5 @@
 import express from 'express';
+
 import logger from '@server/commons/logger';
 
 function newServer(): express.Application {

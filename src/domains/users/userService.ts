@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 
-import {UserType} from '@server/domains/users/entity/user.types';
-import {inject, injectable} from 'inversify';
-import {TYPES} from '@server/commons/types';
-import {UserManager} from '@server/domains/users/userManager';
-import {generateHashPassword} from '@server/commons/utils/hashPassword';
+import { inject, injectable } from 'inversify';
+
+import { UserType } from '@server/domains/users/entity/user.types';
+import { TYPES } from '@server/commons/types';
+import { UserManager } from '@server/domains/users/userManager';
+import { generateHashPassword } from '@server/commons/utils/hashPassword';
 
 @injectable()
 export class UserService {

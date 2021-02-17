@@ -4,17 +4,11 @@ module.exports = {
     transform: {
         '^.+\\.(ts|tsx)$': 'ts-jest'
     },
-    testMatch: [
-        '__tests__/**/*.+(ts|tsx|js)',
-        '**/?(*.)+(spec|test).+(ts|tsx|js)'
-    ],
-    testPathIgnorePatterns: [
-      '/node_modules/',
-      'dist'
-    ],
+    testMatch: ['__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
+    testPathIgnorePatterns: ['/node_modules/', 'dist'],
     moduleNameMapper: {
-      '@server/(.*)$': '<rootDir>/src/$1',
-      '@tests/(.*)$': '<rootDir>/__tests__/$1'
+        '@server/(.*)$': '<rootDir>/src/$1',
+        '@tests/(.*)$': '<rootDir>/__tests__/$1'
     },
     collectCoverageFrom: ['./src/**/*.ts'],
     globals: {

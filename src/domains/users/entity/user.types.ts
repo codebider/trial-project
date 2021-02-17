@@ -1,9 +1,9 @@
 export interface UserAttributes extends UserType {
-    createdAt: Date,
-    updatedAt: Date,
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface UserType {
-    username: string,
-    password: string,
+    username: string;
+    password: string;
 }

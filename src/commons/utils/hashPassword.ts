@@ -1,6 +1,7 @@
-import bcrypt from 'bcrypt';
+import { compareSync, hashSync } from 'bcrypt';
 const saltRounds = 10;
 
-export const generateHashPassword = (plaintextPassword: string): string => bcrypt.hashSync(plaintextPassword, saltRounds);
+export const generateHashPassword = (plaintextPassword: string): string => hashSync(plaintextPassword, saltRounds);
 
-export const checkHashPassword = (plaintextPassword: string, hash: string): boolean => bcrypt.compareSync(plaintextPassword, hash);
+export const checkHashPassword = (plaintextPassword: string, hash: string): boolean =>
+    compareSync(plaintextPassword, hash);

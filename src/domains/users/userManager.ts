@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import { Sequelize } from 'sequelize';
+import { inject, injectable } from 'inversify';
 
-import {User, UserModel, UserStatic} from '@server/domains/users/entity/user';
-import {UserType} from '@server/domains/users/entity/user.types';
-import {inject, injectable} from 'inversify';
-import {TYPES} from '@server/commons/types';
+import { User, UserModel, UserStatic } from '@server/domains/users/entity/user';
+import { UserType } from '@server/domains/users/entity/user.types';
+import { TYPES } from '@server/commons/types';
 
 @injectable()
 export class UserManager {
