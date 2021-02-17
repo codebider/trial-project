@@ -21,15 +21,29 @@ Your customers want to manage their document/data
 - Tech improvement you could think of
 
 
-# Development
+### Development
 - Install dependencies `npm install`
 - Start server `npm start`
 
-# Endpoint
-- POST /v1/login
-- POST /v1/register
-- GET /v1/documents - list documents
-- GET /v1/documents/{id}
-- DELETE /v1/documents/{id}
-- PUT /v1/documents/{id}
-- GET /v1/documents/one?name=&email=
+### API layer
+- [ ] POST /v1/login
+- [ ] POST /v1/register
+- [ ] GET /v1/documents - list documents
+- [ ] GET /v1/documents/{id}
+- [ ] DELETE /v1/documents/{id}
+- [ ] PUT /v1/documents/{id}
+- [ ] GET /v1/documents/one?name=&email=
+
+
+### Migration
+- Use this command line to create new model
+
+`npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string`
+
+- Migrate database:
+
+`npm run sequelize-cli db:migrate`
+
+- Undo migrate:
+
+`npm run sequelize-cli db:migrate:undo`
