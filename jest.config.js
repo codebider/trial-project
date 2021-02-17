@@ -5,8 +5,12 @@ module.exports = {
         '^.+\\.(ts|tsx)$': 'ts-jest'
     },
     testMatch: [
-        '**/__tests__/**/*.+(ts|tsx|js)',
+        '__tests__/**/*.+(ts|tsx|js)',
         '**/?(*.)+(spec|test).+(ts|tsx|js)'
+    ],
+    testPathIgnorePatterns: [
+      '/node_modules/',
+      'dist'
     ],
     moduleNameMapper: {
       '@server/(.*)$': '<rootDir>/src/$1',
