@@ -20,7 +20,3 @@ export interface DocumentData {
     fullName: string;
     password: string;
 }
-
-export interface FindOne {
-    username: string;
-}
