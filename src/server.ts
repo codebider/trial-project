@@ -6,8 +6,8 @@ function newServer(): express.Application {
     app.get('/health', (_req, res) => {
         return res.json({
             status: 'success'
-        })
-    })
+        });
+    });
 
     return app;
 }
