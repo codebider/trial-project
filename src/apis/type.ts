@@ -11,6 +11,7 @@ export enum HttpMethod {
 export enum HttpStatusCode {
     OK = 200,
     CREATED = 201,
+    BAD_REQUEST = 400,
     NOT_FOUND = 404,
     INTERNAL_SERVER_ERROR = 500
 }
@@ -37,7 +38,7 @@ export interface Response<Body> {
 }
 
 export type Handler<ResponseBody> = (
-    req: ExpressRequest<unknown>,
+    req: ExpressRequest<any>,
     res?: ExpressResponse,
     next?: NextFunction
 ) => Promise<Response<ResponseBody>>;

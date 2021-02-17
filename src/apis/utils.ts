@@ -1,16 +1,21 @@
 import express from 'express';
 
 import { Handler, Route, Validator } from '@server/apis/type';
+import errorCode from '@server/commons/errors/errorCode';
 
 const validateRequest = (validate?: Validator): express.RequestHandler => {
     return async (req, _res, next) => {
         if (!validate) {
             return next();
         }
-        req.headers = await validate.headers?.validate(req.headers);
-        req.params = await validate.params?.validate(req.params);
-        req.query = await validate.query?.validate(req.query);
-        req.body = await validate.body?.validate(req.body);
+        try {
+            req.headers = await validate.headers?.validate(req.headers);
+            req.params = await validate.params?.validate(req.params);
+            req.query = await validate.query?.validate(req.query);
+            req.body = await validate.body?.validate(req.body);
+        } catch (error) {
+            throw errorCode.VALIDATOR_ERROR(error.message);
+        }
         next();
     };
 };

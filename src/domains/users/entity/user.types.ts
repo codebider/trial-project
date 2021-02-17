@@ -7,3 +7,7 @@ export interface UserType {
     username: string;
     password: string;
 }
+
+export interface FindOne {
+    username: string;
+}

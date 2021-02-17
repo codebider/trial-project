@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 import { inject, injectable } from 'inversify';
 
 import { User, UserModel, UserStatic } from '@server/domains/users/entity/user';
-import { UserType } from '@server/domains/users/entity/user.types';
+import { FindOne, UserType } from '@server/domains/users/entity/user.types';
 import { TYPES } from '@server/commons/types';
 
 @injectable()
@@ -18,5 +18,16 @@ export class UserManager {
 
         const result = await userData.save();
         return result.get({ pain: true });
+    }
+
+    async findOne(filter: FindOne): Promise<UserType> {
+        const userData: UserType = await this.userInstance.findOne({
+            where: {
+                username: filter.username
+            },
+            raw: true
+        });
+
+        return userData;
     }
 }
