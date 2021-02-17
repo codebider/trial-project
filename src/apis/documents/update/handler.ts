@@ -4,10 +4,10 @@ import { myContainer } from '@server/commons/inversify.config';
 import { TYPES } from '@server/commons/types';
 import { DocumentService } from '@server/domains/documents/documentService';
 
-import { CreateDocumentResponse, CreateDocumentRequest } from './type';
+import { UpdateDocumentResponse, UpdateDocumentRequest } from './type';
 
-const createDocumentHandler: Handler<CreateDocumentResponse> = async (req) => {
-    logger.debug(`${createDocumentHandler.name} Create document request`);
+const updateDocumentHandler: Handler<UpdateDocumentResponse> = async (req) => {
+    logger.debug(`${updateDocumentHandler.name} Create document request`);
     const documentService = myContainer.get<DocumentService>(TYPES.DocumentService);
 
     const user = req.user;
@@ -20,7 +20,7 @@ const createDocumentHandler: Handler<CreateDocumentResponse> = async (req) => {
         ktpNumber,
         npwpNumber,
         passportNumber
-    } = req.body as CreateDocumentRequest;
+    } = req.body as UpdateDocumentRequest;
 
     const result = await documentService.update(user.id, documentId, {
         name,
@@ -32,11 +32,11 @@ const createDocumentHandler: Handler<CreateDocumentResponse> = async (req) => {
         passportNumber
     });
 
-    logger.debug(`${createDocumentHandler.name} Create document successful`, result);
+    logger.debug(`${updateDocumentHandler.name} Create document successful`, result);
     return {
         statusCode: HttpStatusCode.OK,
         body: result
     };
 };
 
-export default createDocumentHandler;
+export default updateDocumentHandler;

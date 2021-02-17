@@ -1,10 +1,10 @@
-export interface CreateDocumentResponse {
+export interface UpdateDocumentResponse {
     id: number;
     name: string;
     email: string;
 }
 
-export interface CreateDocumentRequest {
+export interface UpdateDocumentRequest {
     name: string;
     email: string;
     phoneNumber?: string;
