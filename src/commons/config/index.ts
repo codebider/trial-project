@@ -1,4 +1,4 @@
-import createConfiguration from '../utils/config/createConfiguration';
+import createConfiguration from '../utils/createConfiguration';
 
 import commons from './commons';
 
