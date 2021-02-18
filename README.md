@@ -112,7 +112,7 @@ import { UserManager } from '@server';
 
 ### Steps to add a new module mapping
 
-Since we have 3 "platforms" to run our code so we need 3 kinds of configuration
+Since we have 2 kinds of configuration
 
 -   TypeScript Code
 -   Jest
