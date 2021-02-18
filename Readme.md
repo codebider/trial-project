@@ -28,12 +28,12 @@ Your customers want to manage their document/data
 ### API layer
 - [x] POST /v1/login
 - [x] POST /v1/register
-- [ ] GET /v1/documents - list documents
+- [x] GET /v1/documents - list documents
 - [x] POST /v1/documents - create a document
 - [ ] GET /v1/documents/{id}
-- [ ] DELETE /v1/documents/{id}
+- [x] DELETE /v1/documents/{id}
 - [x] PUT /v1/documents/{id}
-- [ ] GET /v1/documents/one?name=&email=
+- [x] GET /v1/documents/one?identityNumber
 
 
 ### Migration
