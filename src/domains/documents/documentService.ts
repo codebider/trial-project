@@ -67,4 +67,15 @@ export class DocumentService {
 
         return document;
     }
+
+    async getByDocumentId(userId: number, documentId: number): Promise<DocumentData> {
+        const document = await this.documentManager.findOne({
+            userId,
+            id: documentId
+        });
+
+        throwIfMissing(document, errorCode.DOCUMENT_NOT_FOUND);
+
+        return document;
+    }
 }

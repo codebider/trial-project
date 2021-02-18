@@ -7,6 +7,7 @@ import routeDocumentUpdate from './documents/update/route';
 import routeDocumentDelete from './documents/delete/route';
 import routeDocumentList from './documents/list/route';
 import routeDocumentGetOne from './documents/getOne/route';
+import routeDocumentGetById from './documents/get/route';
 
 const routes = express.Router();
 
@@ -17,7 +18,8 @@ const list = [
     routeDocumentUpdate,
     routeDocumentDelete,
     routeDocumentList,
-    routeDocumentGetOne
+    routeDocumentGetOne,
+    routeDocumentGetById
 ];
 
 list.forEach((item) => {
