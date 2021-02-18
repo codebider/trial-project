@@ -5,11 +5,11 @@ import handler from './handler';
 import validator from './validator';
 
 const router = createRoute({
-    path: '/documents',
-    method: HttpMethod.POST,
+    path: '/documents/one',
+    method: HttpMethod.GET,
     isAuth: true,
     validator: {
-        body: validator
+        query: validator
     },
     handler
 });

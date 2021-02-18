@@ -6,6 +6,7 @@ import routeDocumentCreate from './documents/create/route';
 import routeDocumentUpdate from './documents/update/route';
 import routeDocumentDelete from './documents/delete/route';
 import routeDocumentList from './documents/list/route';
+import routeDocumentGetOne from './documents/getOne/route';
 
 const routes = express.Router();
 
@@ -15,7 +16,8 @@ const list = [
     routeDocumentCreate,
     routeDocumentUpdate,
     routeDocumentDelete,
-    routeDocumentList
+    routeDocumentList,
+    routeDocumentGetOne
 ];
 
 list.forEach((item) => {

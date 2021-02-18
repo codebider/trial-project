@@ -3,40 +3,22 @@ import logger from '@server/commons/logger';
 import { myContainer } from '@server/commons/inversify.config';
 import { TYPES } from '@server/commons/types';
 import { DocumentService } from '@server/domains/documents/documentService';
+import { DocumentData } from '@server/domains/documents/entity/document.types';
 
-import { CreateDocumentResponse, CreateDocumentRequest } from './type';
-
-const createDocumentHandler: Handler<CreateDocumentResponse> = async (req) => {
-    logger.debug(`${createDocumentHandler.name} Create document request`);
+const getOneDocumentHandler: Handler<DocumentData> = async (req) => {
+    logger.debug(`${getOneDocumentHandler.name} Create document request`);
     const documentService = myContainer.get<DocumentService>(TYPES.DocumentService);
 
     const user = req.user;
-    const {
-        name,
-        email,
-        phoneNumber,
-        address,
-        ktpNumber,
-        npwpNumber,
-        passportNumber
-    } = req.body as CreateDocumentRequest;
+    const { identityNumber } = req.query;
 
-    const result = await documentService.create({
-        userId: user.id,
-        name,
-        email,
-        phoneNumber,
-        address,
-        ktpNumber,
-        npwpNumber,
-        passportNumber
-    });
+    const result = await documentService.getOne(user.id, identityNumber as string);
 
-    logger.debug(`${createDocumentHandler.name} Create document successful`, result);
+    logger.debug(`${getOneDocumentHandler.name} Create document successful`, result);
     return {
         statusCode: HttpStatusCode.OK,
         body: result
     };
 };
 
-export default createDocumentHandler;
+export default getOneDocumentHandler;

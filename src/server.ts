@@ -1,6 +1,7 @@
 import express from 'express';
 import 'express-async-errors';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import logger from '@server/commons/logger';
 import routes from '@server/apis/routes';
@@ -9,6 +10,8 @@ import errorHandler from '@server/apis/middleware/errorHandler';
 function newServer(): express.Application {
     logger.debug('Setup new server');
     const app = express();
+
+    app.use(cors());
 
     app.get('/health', (_req, res) => {
         return res.json('Document Management API');

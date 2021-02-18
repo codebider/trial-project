@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Sequelize } from 'sequelize';
+import {Op, Sequelize} from 'sequelize';
 import { inject, injectable } from 'inversify';
 
 import { Document, DocumentModel, DocumentStatic } from '@server/domains/documents/entity/document';
@@ -25,6 +25,22 @@ export class DocumentManager {
     async findOne(filter: FindOne): Promise<DocumentData> {
         const documentData: DocumentData = await this.documentInstance.findOne({
             where: omitUndefined(filter as any) as any,
+            raw: true
+        });
+
+        return documentData;
+    }
+
+    async findOneByIdentityNumber(userId: number, uniqueNumber: string): Promise<DocumentData> {
+        const where = {
+            userId,
+            [Op.or]: {
+                ktpNumber: uniqueNumber,
+                npwpNumber: uniqueNumber
+            }
+        };
+        const documentData: DocumentData = await this.documentInstance.findOne({
+            where,
             raw: true
         });
 

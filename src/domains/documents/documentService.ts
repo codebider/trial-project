@@ -6,6 +6,7 @@ import { TYPES } from '@server/commons/types';
 import { DocumentManager } from '@server/domains/documents/documentManager';
 import { UpdateBy } from '@server/domains/documents/type';
 import errorCode from '@server/commons/errors/errorCode';
+import throwIfMissing from "@server/commons/assertion/throwIfMissing";
 
 @injectable()
 export class DocumentService {
@@ -44,13 +45,11 @@ export class DocumentService {
         return documents;
     }
 
-    async getOne(userId: number, name?: string, email?: string): Promise<DocumentData> {
-        const documents = await this.documentManager.findOne({
-            userId,
-            name,
-            email
-        });
+    async getOne(userId: number, identityNumber: string): Promise<DocumentData> {
+        const document = await this.documentManager.findOneByIdentityNumber(userId, identityNumber);
 
-        return documents;
+        throwIfMissing(document, errorCode.DOCUMENT_NOT_FOUND);
+
+        return document;
     }
 }
