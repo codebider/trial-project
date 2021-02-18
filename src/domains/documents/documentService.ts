@@ -8,6 +8,7 @@ import { UpdateBy } from '@server/domains/documents/type';
 import errorCode from '@server/commons/errors/errorCode';
 import throwIfMissing from '@server/commons/assertion/throwIfMissing';
 import { dayAgo } from '@server/commons/utils/date';
+import config from '@server/commons/config';
 
 @injectable()
 export class DocumentService {
@@ -83,7 +84,7 @@ export class DocumentService {
     }
 
     async cleanUp(): Promise<number> {
-        const time = 3;
+        const time = config.get('softDeleteDay');
         const date = dayAgo(time);
         const count = await this.documentManager.permanentDeleted(date);
 

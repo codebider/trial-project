@@ -163,3 +163,6 @@ Should log in-out for each function
 
 ### Soft delete
 https://sequelize.org/master/manual/paranoid.html
+
+We have schedule job that running every mid-night to force delete the `soft deleted` data.
+Take a look on `job/index.ts`
