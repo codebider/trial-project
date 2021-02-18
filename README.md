@@ -4,7 +4,9 @@ Build a document management application (API or Web), [requirements here](./docs
 
 ## Architecture & Design
 
--   Model diagram in https://app.diagrams.net/#G1La5WxWMo2eoVDKB31GXK-ol0sGabgEOY
+-   Database model diagram in https://app.diagrams.net/#G1La5WxWMo2eoVDKB31GXK-ol0sGabgEOY
+
+![alt text](./docs/model_diagram.png)
 
 ### API layer
 
