@@ -50,6 +50,7 @@ Build a document management application (API or Web), [requirements here](./docs
 
 -   Code for Schedule specific logic:
     - Event / Request validation
+    - Handlers
     - Event / Response
 
 #### `src > domains`:
