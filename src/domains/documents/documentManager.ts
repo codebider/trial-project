@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {Op, Sequelize} from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 import { inject, injectable } from 'inversify';
 
 import { Document, DocumentModel, DocumentStatic } from '@server/domains/documents/entity/document';
