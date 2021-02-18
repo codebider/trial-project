@@ -10,7 +10,16 @@ export interface UpdateBy {
 
 export interface FindOne {
     id?: number;
-    userId?: string;
+    userId?: number;
+    name?: string;
+    email?: string;
+    ktpNumber?: string;
+    npwpNumber?: string;
+}
+
+export interface FindAll {
+    id?: number;
+    userId?: number;
     ktpNumber?: string;
     npwpNumber?: string;
 }

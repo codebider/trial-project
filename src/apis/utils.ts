@@ -1,9 +1,13 @@
 import express from 'express';
 
-import { Handler, Route, Validator } from '@server/apis/type';
+import { Handler, Route, Validator, ValidatorEnum } from '@server/apis/type';
 import errorCode from '@server/commons/errors/errorCode';
 import emptyHandler from '@server/apis/middleware/emptyHandler';
 import userHandler from '@server/apis/middleware/userHandler';
+
+export const validateItem = async (key: ValidatorEnum, req, validate: Validator): Promise<any> => {
+    return validate[key] ? await validate[key]?.validate(req[key]) : req[key];
+};
 
 export const validateRequest = (validate?: Validator): express.RequestHandler => {
     return async (req, _res, next) => {
@@ -11,10 +15,10 @@ export const validateRequest = (validate?: Validator): express.RequestHandler =>
             return next();
         }
         try {
-            req.headers = await validate.headers?.validate(req.headers);
-            req.params = await validate.params?.validate(req.params);
-            req.query = await validate.query?.validate(req.query);
-            req.body = await validate.body?.validate(req.body);
+            req.headers = await validateItem(ValidatorEnum.Headers, req, validate);
+            req.params = await validateItem(ValidatorEnum.Params, req, validate);
+            req.query = await validateItem(ValidatorEnum.Query, req, validate);
+            req.body = await validateItem(ValidatorEnum.Body, req, validate);
         } catch (error) {
             throw errorCode.VALIDATOR_ERROR(error.message);
         }

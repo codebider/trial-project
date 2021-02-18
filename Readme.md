@@ -26,13 +26,14 @@ Your customers want to manage their document/data
 - Start server `npm start`
 
 ### API layer
-- [ ] POST /v1/login
-- [ ] POST /v1/register
-- [ ] GET /v1/documents - list documents
-- [ ] GET /v1/documents/{id}
-- [ ] DELETE /v1/documents/{id}
-- [ ] PUT /v1/documents/{id}
-- [ ] GET /v1/documents/one?name=&email=
+- [x] POST /v1/login
+- [x] POST /v1/register
+- [x] GET /v1/documents - list documents
+- [x] POST /v1/documents - create a document
+- [x] GET /v1/documents/{id}
+- [x] DELETE /v1/documents/{id}
+- [x] PUT /v1/documents/{id}
+- [x] GET /v1/documents/one?identityNumber
 
 
 ### Migration

@@ -28,7 +28,7 @@ const errorCode = {
     },
     get USER_EXISTED(): ClientError {
         return newClientError({
-            statusCode: HttpStatusCode.Conflict,
+            statusCode: HttpStatusCode.CONFLICT,
             errorId: 'D004',
             userMessage: 'User existed',
             internalMessage: 'User existed'
@@ -36,12 +36,28 @@ const errorCode = {
     },
     get UN_AUTHORIZED(): ClientError {
         return newClientError({
-            statusCode: HttpStatusCode.Unauthorized,
+            statusCode: HttpStatusCode.UNAUTHORIZED,
             errorId: 'D005',
             userMessage: 'unauthorized',
             internalMessage: 'UN_AUTHORIZED'
         });
     },
+    get DOCUMENT_NOT_FOUND(): ClientError {
+        return newClientError({
+            statusCode: HttpStatusCode.NOT_FOUND,
+            errorId: 'D006',
+            userMessage: 'Document Not Found',
+            internalMessage: 'Document Not Found'
+        });
+    },
+    get DOCUMENT_DUPLICATED_IDENTITY_NUMBER(): ClientError {
+        return newClientError({
+            statusCode: HttpStatusCode.CONFLICT,
+            errorId: 'D007',
+            userMessage: 'Document Duplicated',
+            internalMessage: 'Document Duplicated'
+        });
+    }
 };
 
 export default errorCode;
