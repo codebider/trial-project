@@ -45,6 +45,12 @@ Build a document management application (API or Web), [requirements here](./docs
     - Request / Response validation
     - Request / Response conversion to internal data transfer object
     - Request / Response schema
+    
+#### `src > jobs`:
+
+-   Code for Schedule specific logic:
+    - Event / Request validation
+    - Event / Response
 
 #### `src > domains`:
 
