@@ -12,6 +12,7 @@ export enum HttpMethod {
 export enum HttpStatusCode {
     OK = 200,
     CREATED = 201,
+    NO_CONTENT = 204,
     BAD_REQUEST = 400,
     NOT_FOUND = 404,
     Conflict = 409,
@@ -37,7 +38,7 @@ export type ExpressRequest<T> = Request<any, any, T>;
 
 export interface Response<Body> {
     statusCode: HttpStatusCode;
-    body: Body;
+    body?: Body;
 }
 
 export type Handler<ResponseBody> = (

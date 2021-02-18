@@ -5,7 +5,8 @@ import { inject, injectable } from 'inversify';
 import { Document, DocumentModel, DocumentStatic } from '@server/domains/documents/entity/document';
 import { DocumentData, DocumentType } from '@server/domains/documents/entity/document.types';
 import { TYPES } from '@server/commons/types';
-import { FindOne, UpdateBy } from '@server/domains/documents/type';
+import { FindAll, FindOne, UpdateBy } from '@server/domains/documents/type';
+import omitUndefined from '@server/commons/utils/omitUndefined';
 
 @injectable()
 export class DocumentManager {
@@ -23,17 +24,27 @@ export class DocumentManager {
 
     async findOne(filter: FindOne): Promise<DocumentData> {
         const documentData: DocumentData = await this.documentInstance.findOne({
-            where: filter as any,
+            where: omitUndefined(filter as any) as any,
             raw: true
         });
 
         return documentData;
     }
 
-    async deleteById(id: number): Promise<void> {
+    async findAll(filter: FindAll): Promise<DocumentData> {
+        const documentData: DocumentData = await this.documentInstance.findAll({
+            where: omitUndefined(filter as any) as any,
+            raw: true
+        });
+
+        return documentData;
+    }
+
+    async deleteById(userId: number, documentId: number): Promise<void> {
         await this.documentInstance.destroy({
             where: {
-                id
+                id: documentId,
+                userId
             }
         });
     }
