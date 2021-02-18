@@ -30,7 +30,7 @@ Your customers want to manage their document/data
 - [x] POST /v1/register
 - [x] GET /v1/documents - list documents
 - [x] POST /v1/documents - create a document
-- [ ] GET /v1/documents/{id}
+- [x] GET /v1/documents/{id}
 - [x] DELETE /v1/documents/{id}
 - [x] PUT /v1/documents/{id}
 - [x] GET /v1/documents/one?identityNumber
