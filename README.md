@@ -38,6 +38,10 @@ Build a document management application (API or Web), [requirements here](./docs
 | tsconfig.json              | Config settings for compiling server code written in TypeScript when develop                                        |
 | src                        | Contains source code that will be compiled to the dist dir. See below for subfolder convention and notes            |
 
+Code Structure Diagram
+
+![Code Structure](./docs/code_structure.png)
+
 #### `src > apis`:
 
 -   Code for REST API endpoint specific logic:
