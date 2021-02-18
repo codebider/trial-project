@@ -15,8 +15,8 @@ export enum HttpStatusCode {
     NO_CONTENT = 204,
     BAD_REQUEST = 400,
     NOT_FOUND = 404,
-    Conflict = 409,
-    Unauthorized = 401,
+    CONFLICT = 409,
+    UNAUTHORIZED = 401,
     INTERNAL_SERVER_ERROR = 500
 }
 

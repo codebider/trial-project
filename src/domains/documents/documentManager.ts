@@ -7,6 +7,7 @@ import { DocumentData, DocumentType } from '@server/domains/documents/entity/doc
 import { TYPES } from '@server/commons/types';
 import { FindAll, FindOne, UpdateBy } from '@server/domains/documents/type';
 import omitUndefined from '@server/commons/utils/omitUndefined';
+import { QueryBuilder } from '@server/commons/utils/queryBuilder';
 
 @injectable()
 export class DocumentManager {
@@ -36,7 +37,7 @@ export class DocumentManager {
             userId,
             [Op.or]: {
                 ktpNumber: uniqueNumber,
-                npwpNumber: uniqueNumber
+                passportNumber: uniqueNumber
             }
         };
         const documentData: DocumentData = await this.documentInstance.findOne({
@@ -45,6 +46,36 @@ export class DocumentManager {
         });
 
         return documentData;
+    }
+
+    async checkExistedByIdentityNumber({
+        userId,
+        ktpNumber,
+        documentId,
+        passportNumber
+    }: {
+        userId: number;
+        ktpNumber?: string;
+        documentId?: number;
+        passportNumber?: string;
+    }): Promise<boolean> {
+        if (!ktpNumber && !passportNumber) {
+            return false;
+        }
+        const query = new QueryBuilder()
+            .where('userId', userId)
+            .whereNotEqual('id', documentId)
+            .whereOr(
+                omitUndefined({
+                    ktpNumber,
+                    passportNumber
+                })
+            )
+            .build();
+
+        const count: number = await this.documentInstance.count(query);
+
+        return count > 0;
     }
 
     async findAll(filter: FindAll): Promise<DocumentData[]> {

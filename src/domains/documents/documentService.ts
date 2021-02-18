@@ -13,12 +13,27 @@ export class DocumentService {
     constructor(@inject(TYPES.DocumentManager) private documentManager: DocumentManager) {}
 
     async create(params: DocumentType): Promise<DocumentData> {
+        const { userId, ktpNumber, passportNumber } = params;
+        const existed = await this.documentManager.checkExistedByIdentityNumber({ userId, ktpNumber, passportNumber });
+        if (existed) {
+            throw errorCode.DOCUMENT_DUPLICATED_IDENTITY_NUMBER;
+        }
         const newDoc = await this.documentManager.create(params);
 
         return newDoc;
     }
 
     async update(userId: number, documentId: number, params: UpdateBy): Promise<DocumentData> {
+        const { ktpNumber, passportNumber } = params;
+        const existed = await this.documentManager.checkExistedByIdentityNumber({
+            userId,
+            ktpNumber,
+            passportNumber,
+            documentId
+        });
+        if (existed) {
+            throw errorCode.DOCUMENT_DUPLICATED_IDENTITY_NUMBER;
+        }
         await this.documentManager.updateById(userId, documentId, params);
 
         const newDoc = await this.documentManager.findOne({ id: documentId });
