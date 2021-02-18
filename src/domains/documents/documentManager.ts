@@ -31,8 +31,8 @@ export class DocumentManager {
         return documentData;
     }
 
-    async findAll(filter: FindAll): Promise<DocumentData> {
-        const documentData: DocumentData = await this.documentInstance.findAll({
+    async findAll(filter: FindAll): Promise<DocumentData[]> {
+        const documentData: DocumentData[] = await this.documentInstance.findAll({
             where: omitUndefined(filter as any) as any,
             raw: true
         });

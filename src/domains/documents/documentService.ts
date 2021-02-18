@@ -36,8 +36,8 @@ export class DocumentService {
         return newDoc;
     }
 
-    async list(userId: number): Promise<DocumentData> {
-        const documents = await this.documentManager.findAll({
+    async list(userId: number): Promise<DocumentData[]> {
+        const documents: DocumentData[] = await this.documentManager.findAll({
             userId
         });
 

@@ -1,15 +1,3 @@
-export interface CreateDocumentResponse {
-    id: number;
-    name: string;
-    email: string;
-}
+import { DocumentData } from '@server/domains/documents/entity/document.types';
 
-export interface CreateDocumentRequest {
-    name: string;
-    email: string;
-    phoneNumber?: string;
-    address?: string;
-    ktpNumber?: string;
-    npwpNumber?: string;
-    passportNumber?: string;
-}
+export type ListDocumentResponse = DocumentData[];

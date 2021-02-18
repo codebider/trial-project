@@ -4,39 +4,21 @@ import { myContainer } from '@server/commons/inversify.config';
 import { TYPES } from '@server/commons/types';
 import { DocumentService } from '@server/domains/documents/documentService';
 
-import { CreateDocumentResponse, CreateDocumentRequest } from './type';
+import { ListDocumentResponse } from './type';
 
-const createDocumentHandler: Handler<CreateDocumentResponse> = async (req) => {
-    logger.debug(`${createDocumentHandler.name} Create document request`);
+const listDocumentHandler: Handler<ListDocumentResponse> = async (req) => {
+    logger.debug(`${listDocumentHandler.name} List document request`);
     const documentService = myContainer.get<DocumentService>(TYPES.DocumentService);
 
     const user = req.user;
-    const {
-        name,
-        email,
-        phoneNumber,
-        address,
-        ktpNumber,
-        npwpNumber,
-        passportNumber
-    } = req.body as CreateDocumentRequest;
 
-    const result = await documentService.create({
-        userId: user.id,
-        name,
-        email,
-        phoneNumber,
-        address,
-        ktpNumber,
-        npwpNumber,
-        passportNumber
-    });
+    const result = await documentService.list(user.id);
 
-    logger.debug(`${createDocumentHandler.name} Create document successful`, result);
+    logger.debug(`${listDocumentHandler.name} List document successful`, result);
     return {
         statusCode: HttpStatusCode.OK,
         body: result
     };
 };
 
-export default createDocumentHandler;
+export default listDocumentHandler;
