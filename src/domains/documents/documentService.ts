@@ -5,7 +5,7 @@ import { DocumentData, DocumentType } from '@server/domains/documents/entity/doc
 import { TYPES } from '@server/commons/types';
 import { DocumentManager } from '@server/domains/documents/documentManager';
 import { UpdateBy } from '@server/domains/documents/type';
-import errorCode from "@server/commons/errors/errorCode";
+import errorCode from '@server/commons/errors/errorCode';
 
 @injectable()
 export class DocumentService {
