@@ -1,6 +1,7 @@
 export interface DocumentAttributes extends DocumentType {
     createdAt: Date;
     updatedAt: Date;
+    deletedAt: Date;
 }
 
 export interface DocumentType {

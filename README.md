@@ -160,3 +160,6 @@ Note this will also generate a coverage report
 
 We use consolog for logging (for now).
 Should log in-out for each function
+
+### Soft delete
+https://sequelize.org/master/manual/paranoid.html

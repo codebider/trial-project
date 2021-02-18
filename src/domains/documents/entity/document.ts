@@ -9,53 +9,63 @@ export type DocumentStatic = typeof Model & {
 };
 
 export const Document = (sequelize: Sequelize): DocumentStatic => {
-    return sequelize.define('Documents', {
-        id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
+    return sequelize.define(
+        'Documents',
+        {
+            id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: DataTypes.INTEGER
+            },
+            userId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references: { model: 'Users', key: 'id' }
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            phoneNumber: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            address: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            ktpNumber: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            npwpNumber: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            passportNumber: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            createdAt: {
+                allowNull: false,
+                type: DataTypes.DATE
+            },
+            updatedAt: {
+                allowNull: false,
+                type: DataTypes.DATE
+            },
+            deletedAt: {
+                allowNull: true,
+                type: DataTypes.DATE
+            }
         },
-        userId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: { model: 'Users', key: 'id' }
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        phoneNumber: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        ktpNumber: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        npwpNumber: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        passportNumber: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        createdAt: {
-            allowNull: false,
-            type: DataTypes.DATE
-        },
-        updatedAt: {
-            allowNull: false,
-            type: DataTypes.DATE
+        {
+            paranoid: true
         }
-    }) as DocumentStatic;
+    ) as DocumentStatic;
 };
