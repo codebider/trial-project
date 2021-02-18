@@ -160,3 +160,9 @@ Note this will also generate a coverage report
 
 We use consolog for logging (for now).
 Should log in-out for each function
+
+### Soft delete
+https://sequelize.org/master/manual/paranoid.html
+
+We have schedule job that running every mid-night to force delete the `soft deleted` data.
+Take a look on `job/index.ts`

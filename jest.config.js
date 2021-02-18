@@ -11,7 +11,7 @@ module.exports = {
         '@tests/(.*)$': '<rootDir>/__tests__/$1'
     },
     collectCoverageFrom: ['./src/**/*.ts'],
-    modulePathIgnorePatterns: ['./src/migrations/'],
+    modulePathIgnorePatterns: ['./src/migrations/', './src/index.ts'],
     globals: {
         'ts-jest': {
             tsconfig: './tsconfig.json'

@@ -10,8 +10,16 @@ function startServer(): void {
     const port = config.get('port');
     const host = config.get('host');
 
-    http.createServer(app).listen(port, host, () => {
+    const server = http.createServer(app).listen(port, host, () => {
+        app.emit('listening');
         logger.log(`Server ready at http://${host}:${port}`);
+    });
+
+    process.on('SIGINT', function () {
+        app.emit('close');
+        server.close(function () {
+            process.exit(0);
+        });
     });
 }
 
