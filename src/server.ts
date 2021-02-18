@@ -6,6 +6,7 @@ import cors from 'cors';
 import logger from '@server/commons/logger';
 import routes from '@server/apis/routes';
 import errorHandler from '@server/apis/middleware/errorHandler';
+import { startJobs } from '@server/jobs';
 
 function newServer(): express.Application {
     logger.debug('Setup new server');
@@ -22,6 +23,12 @@ function newServer(): express.Application {
     app.use('/v1', routes);
 
     app.use(errorHandler);
+
+    app.on('listening', function () {
+        // server ready to accept connections here
+        const cancel = startJobs();
+        app.on('close', () => cancel());
+    });
 
     return app;
 }

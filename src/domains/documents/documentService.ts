@@ -7,6 +7,7 @@ import { DocumentManager } from '@server/domains/documents/documentManager';
 import { UpdateBy } from '@server/domains/documents/type';
 import errorCode from '@server/commons/errors/errorCode';
 import throwIfMissing from '@server/commons/assertion/throwIfMissing';
+import { dayAgo } from '@server/commons/utils/date';
 
 @injectable()
 export class DocumentService {
@@ -79,5 +80,13 @@ export class DocumentService {
         throwIfMissing(document, errorCode.DOCUMENT_NOT_FOUND);
 
         return document;
+    }
+
+    async cleanUp(): Promise<number> {
+        const time = 3;
+        const date = dayAgo(time);
+        const count = await this.documentManager.permanentDeleted(date);
+
+        return count;
     }
 }

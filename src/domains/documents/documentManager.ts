@@ -104,6 +104,20 @@ export class DocumentManager {
         });
     }
 
+    async permanentDeleted(deletedAt: Date): Promise<number> {
+        const count: number = await this.documentInstance.destroy({
+            where: {
+                deletedAt: {
+                    [Op.not]: null,
+                    [Op.lte]: deletedAt
+                }
+            },
+            force: true
+        });
+
+        return count;
+    }
+
     async updateById(userId: number, documentId: number, update: UpdateBy): Promise<void> {
         await this.documentInstance.update(update, {
             where: {
