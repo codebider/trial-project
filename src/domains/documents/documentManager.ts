@@ -40,6 +40,14 @@ export class DocumentManager {
         return documentData;
     }
 
+    async count(filter: FindAll): Promise<number> {
+        const totalOfRecords: number = await this.documentInstance.count({
+            where: omitUndefined(filter as any) as any
+        });
+
+        return totalOfRecords;
+    }
+
     async deleteById(userId: number, documentId: number): Promise<void> {
         await this.documentInstance.destroy({
             where: {

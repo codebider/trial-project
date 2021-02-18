@@ -5,6 +5,7 @@ import { DocumentData, DocumentType } from '@server/domains/documents/entity/doc
 import { TYPES } from '@server/commons/types';
 import { DocumentManager } from '@server/domains/documents/documentManager';
 import { UpdateBy } from '@server/domains/documents/type';
+import errorCode from "@server/commons/errors/errorCode";
 
 @injectable()
 export class DocumentService {
@@ -24,6 +25,11 @@ export class DocumentService {
     }
 
     async delete(userId: number, documentId: number): Promise<DocumentData> {
+        const count = await this.documentManager.count({ userId, id: documentId });
+        if (count === 0) {
+            throw errorCode.DOCUMENT_NOT_FOUND;
+        }
+
         await this.documentManager.deleteById(userId, documentId);
 
         const newDoc = await this.documentManager.findOne({ id: documentId });

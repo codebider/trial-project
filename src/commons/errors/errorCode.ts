@@ -42,6 +42,14 @@ const errorCode = {
             internalMessage: 'UN_AUTHORIZED'
         });
     },
+    get DOCUMENT_NOT_FOUND(): ClientError {
+        return newClientError({
+            statusCode: HttpStatusCode.NOT_FOUND,
+            errorId: 'D006',
+            userMessage: 'Document Not Found',
+            internalMessage: 'Document Not Found'
+        });
+    }
 };
 
 export default errorCode;
