@@ -81,7 +81,7 @@ describe('DocumentManager', () => {
                     userId: 221,
                     [Op.or]: {
                         ktpNumber: '2211',
-                        npwpNumber: '2211'
+                        passportNumber: '2211'
                     }
                 }
             });

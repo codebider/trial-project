@@ -34,6 +34,8 @@ export class DocumentService {
         if (existed) {
             throw errorCode.DOCUMENT_DUPLICATED_IDENTITY_NUMBER;
         }
+
+        console.log(userId, documentId, params);
         await this.documentManager.updateById(userId, documentId, params);
 
         const newDoc = await this.documentManager.findOne({ id: documentId });
